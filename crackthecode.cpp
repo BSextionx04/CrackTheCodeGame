@@ -84,7 +84,7 @@ void PlayervCPU(bool gameOver) { //runs until game is complete
                 break;
             }
         }
-        else {
+        else { //else statement
             cout << guess << " is not a 4 digit code, try again." << endl;
             cout << "Guess a 4 digit number: ";
         }
