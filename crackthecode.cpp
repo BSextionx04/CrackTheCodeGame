@@ -3,16 +3,6 @@
 
 using namespace std;
 
-bool checkPlayerChoice(int playerChoice) {
-    if (playerChoice == 1 || playerChoice == 2)
-    {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
 bool checkDigits(int guess) {
     int count = 0;
     while(guess != 0) {
@@ -50,7 +40,7 @@ void checkGuess(int guess, int code, bool& gameStatus) {
     }
     if (occurence == 4) //if all number occur in right position gameOver = true
     {
-        cout << "\nCongratulations you cracked the code!\nAll numbers are in the right position." << endl;
+        cout << "\nCongratulations you cracked the code!\nAll numbers are in the right position!" << endl;
         gameStatus = true;
     }
     else {
@@ -113,14 +103,14 @@ void checkGuess(int guess, int code, bool& gameStatus) {
     }
 }
 
-void PlayervCPU(bool gameOver) { //runs until game is complete
+void PlayervCPU(bool& gameOver) { //runs until game is complete
     srand( time(NULL) );
     int code = rand() % 9000 + 1000;
     int guess;
     int tries = 0;
 
-    cout << "\nYou chose option 1: Player vs. CPU" << endl;
-    cout << "You will now have to crack the CPU'S 4 digit code\n" << endl;
+    cout << "The CPU has entered in a 4 digit code" << endl;
+    cout << "You will now have to crack the CPU'S code\n" << endl;
     cout << "Guess a 4 digit number: ";
 
     while (!gameOver) //while loop to ask for guesses until code is found
@@ -142,12 +132,9 @@ void PlayervCPU(bool gameOver) { //runs until game is complete
         }
         ++tries;
     }
-    cout << "\nIt took you " << tries << " tries to crack the code!" << endl;
+    cout << "\nIt took you " << tries << " tries to crack the code." << endl;
 }
-
-void PlayervPlayer() {
     
-}
 
 int main() {
     bool gameOver = false;
@@ -157,44 +144,7 @@ int main() {
     while (!gameOver)
     {
         cout << "Welcome to Crack the Code!\n" << endl;
-        cout << "1. Player vs. CPU\n2. Player vs. Player\n" << endl;
-        cout << "Select which mode you would like to play: ";
-        cin >> playerChoice;
-        if (checkPlayerChoice(playerChoice)) //if playerChocie is elligble = switch case to access either game mode
-        {
-            switch (playerChoice) //no default needed only runs if playerChoice is option 1 or 2
-            {
-            case 1: //PlayervCPU function
-                PlayervCPU(gameOver);
-                break;
-            case 2: //PlayervPlayer function
-                /* code */
-                break;
-            }
-        }
-        else { //reruns checkPlayerChoice fucntion until true
-            while (true)
-            {
-                cout << playerChoice << " is not an option. Please try again." << endl;
-                cout << "1. Player vs. CPU\n2. Player vs. Player" << endl;
-                cin >> playerChoice;
-                if (checkPlayerChoice(playerChoice)) {
-                    switch (playerChoice) //no default needed only runs if playerChoice is option 1 or 2
-                    {
-                    case 1: //PlayervCPU function
-                        PlayervCPU(gameOver);
-                        break;
-                    case 2: //PlayervPlayer function
-                        /* code */
-                        gameOver = true;
-                        break;
-                    }
-                    break;
-                }
-            }
-            
-        }
-        break;
+        PlayervCPU(gameOver);
     }
     
 }
